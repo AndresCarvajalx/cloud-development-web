@@ -24,3 +24,4 @@ export const loginValidation = (email, password) => signInWithEmailAndPassword(a
 });
 export const signOut = () => auth.signOut();
 export const getUser = () => auth.currentUser;
+export const URL  = 'https://andrescarvajalx.github.io/cloud-development-web/';

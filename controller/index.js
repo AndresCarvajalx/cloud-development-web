@@ -1,4 +1,4 @@
-import { loginValidation } from "../controller/global.js";
+import { loginValidation, URL } from "../controller/global.js";
 
 const btnLogin = document.getElementById('login-btn');
 
@@ -16,7 +16,7 @@ async function validate() {
     const validation = validate_inputs(email.trim(), password.trim()) ? loginValidation(email, password) : null;
     var res = await validation;
     if (res != null) {
-        window.location.href = '../../templates/home.html'
+        window.location.href = URL + 'templates/home.html'
     }
     else {
         alert('Error authentication not successful')
