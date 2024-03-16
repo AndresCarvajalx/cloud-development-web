@@ -3,7 +3,7 @@ import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.8.1/firebas
 //from "firebase/app";
 //import { getAnalytics } from 'https://www.gstatic.com/firebasejs/10.8.1/firebase-analytics.js'; 
 //from "firebase/analytics";
-import { getAuth, signInWithEmailAndPassword,onAuthStateChanged} from 'https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js'
+import { getAuth, signInWithEmailAndPassword, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js'
 
 const firebaseConfig = {
   apiKey: "AIzaSyD1PZVozE2REEdKZ3QaxwOXQ-SqnWuk96E",
@@ -19,6 +19,8 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 //const analytics = getAnalytics(app);
 export const auth = getAuth(app);
-export const loginValidation = (email, password) => signInWithEmailAndPassword(auth, email, password);
+export const loginValidation = (email, password) => signInWithEmailAndPassword(auth, email, password).catch(() => {
+  alert("Error al iniciar sesión, verifica tus datos");
+});
 export const signOut = () => auth.signOut();
 export const getUser = () => auth.currentUser;
