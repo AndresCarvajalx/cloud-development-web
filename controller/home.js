@@ -5,8 +5,9 @@ const btnLogout = document.getElementById('logout-btn');
 const userEmail = document.getElementById('user-email');
 
 function logout() {
-    signOut();
-    window.location.href = URL + 'index.html';
+    signOut().then(() => {
+        window.location.href = URL + 'index.html';
+    });
 }
 
 window.addEventListener('DOMContentLoaded', () => {
