@@ -1,0 +1,71 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0; /* Color de fondo gris claro */
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    text-align: center;
+    color: #000; /* Color de texto negro */
+}
+
+#form-container {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #fff; /* Fondo blanco */
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+}
+
+input[type="email"],
+input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc; /* Borde gris */
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.button {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.bg-black {
+    background-color: #000; /* Fondo negro */
+    color: #fff; /* Color de texto blanco */
+}
+
+.button:hover {
+    background-color: #333; /* Color de fondo más oscuro al pasar el ratón */
+}
+
+.bg-blue {
+    background-color: #456eb1; /* Color de Google */
+    color: #fff; /* Color de texto blanco */
+    cursor: pointer;
+}
+
+#google-login-btn:hover,
+#facebook-login-btn:hover {
+    background-color: #3c78dc; /* Color de fondo más oscuro al pasar el ratón */
+}
+
+a {
+    display: block;
+    text-align: center;
+    margin-top: 10px;
+    color: #666; /* Color de texto gris */
+    text-decoration: underline;
+}
+
+a:hover {
+    color: #000; /* Color de texto negro al pasar el ratón */
+}
