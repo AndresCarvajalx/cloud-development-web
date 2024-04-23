@@ -12,7 +12,7 @@ async function signIn() {
       sendEmail(user)
         .then(() => {
           alert("Se envio un correo de verificacion");
-          window.location.replace("../index.html");
+          window.location.href = "./index.html";;
         })
         .catch((error) => {
           alert(error);
