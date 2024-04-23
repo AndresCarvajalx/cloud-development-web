@@ -31,12 +31,12 @@ document.addEventListener("DOMContentLoaded", () => {
   loginBtn.addEventListener("click", loginWithInputs);
   loginGoogleBtn.addEventListener("click", () => {
     signInPopup(googleProvider).then(() => {
-      window.location.replace("../templates/home.html");
+      window.location.href = "./templates/home.html";
     });
   });
   loginFacebookBtn.addEventListener("click", () =>
     signInPopup(facebookProvider).then(() => {
-      window.location.replace("../templates/home.html");
+      window.location.href = "./templates/home.html";
     })
   );
 });
