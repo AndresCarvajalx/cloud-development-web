@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
   loginFacebookBtn.addEventListener("click", () =>
-    signInPopup(googleProvider).then(() => {
+    signInPopup(facebookProvider).then(() => {
       window.location.replace("../templates/home.html");
     })
   );
