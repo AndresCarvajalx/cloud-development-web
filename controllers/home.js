@@ -13,7 +13,7 @@ let currentUser;
 document.addEventListener("DOMContentLoaded", () => {
   onAuthChanged((user) => {
     if (!user) {
-      window.location.href = "./index.html";
+      window.location.href = "../index.html";
     } else {
       currentUser = user;
     }
