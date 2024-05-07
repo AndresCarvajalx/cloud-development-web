@@ -1,32 +1,26 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #f0f0f0; /* Color de fondo gris claro */
+    background-color: #f0f0f0;
+    /* Color de fondo gris claro */
     margin: 0;
     padding: 0;
 }
 
 h1 {
     text-align: center;
-    color: #000; /* Color de texto negro */
+    color: #000;
+    /* Color de texto negro */
 }
 
 #form-container {
     max-width: 400px;
     margin: 50px auto;
     padding: 20px;
-    background-color: #fff; /* Fondo blanco */
+    background-color: #fff;
+    /* Fondo blanco */
     border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra ligera */
-}
-
-input[type="email"],
-input[type="password"] {
-    width: 100%;
-    padding: 10px;
-    margin: 10px 0;
-    border: 1px solid #ccc; /* Borde gris */
-    border-radius: 5px;
-    box-sizing: border-box;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    /* Sombra ligera */
 }
 
 .button {
@@ -38,34 +32,115 @@ input[type="password"] {
     cursor: pointer;
 }
 
-.bg-black {
-    background-color: #000; /* Fondo negro */
-    color: #fff; /* Color de texto blanco */
-}
 
 .button:hover {
-    background-color: #333; /* Color de fondo más oscuro al pasar el ratón */
+    background-color: #333;
+    /* Color de fondo más oscuro al pasar el ratón */
 }
 
-.bg-blue {
-    background-color: #456eb1; /* Color de Google */
-    color: #fff; /* Color de texto blanco */
-    cursor: pointer;
-}
 
 #google-login-btn:hover,
 #facebook-login-btn:hover {
-    background-color: #3c78dc; /* Color de fondo más oscuro al pasar el ratón */
+    background-color: #3c78dc;
+    /* Color de fondo más oscuro al pasar el ratón */
 }
 
 a {
     display: block;
     text-align: center;
     margin-top: 10px;
-    color: #666; /* Color de texto gris */
+    color: #666;
+    /* Color de texto gris */
     text-decoration: underline;
 }
 
 a:hover {
-    color: #000; /* Color de texto negro al pasar el ratón */
+    color: #000;
+}
+
+.input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.bg-blue {
+    background-color: #456eb1;
+    color: #fff;
+}
+
+.bg-black {
+    background-color: #000;
+    color: #fff;
+}
+
+.bg-red {
+    background-color: #ff0000;
+}
+
+.bg-green {
+    background-color: #008000;
+}
+
+.bg-yellow {
+    background-color: #ffff00;
+}
+
+.border-red {
+    border-color: #ff0000;
+}
+
+.border-gray {
+    border-color: #8c8c8c;
+}
+
+.border-blue {
+    border-color: #0000ff;
+}
+
+.border-green {
+    border-color: #008000;
+}
+
+.border-yellow {
+    border-color: #ffff00;
+}
+
+.txt-white {
+    color: #fff;
+}
+
+.txt-red {
+    color: #ff0000;
+}
+
+.txt-blue {
+    color: #0000ff;
+}
+
+.txt-green {
+    color: #008000;
+}
+
+.txt-yellow {
+    color: #ffff00;
+}
+
+.font-small {
+    font-size: 12px;
+}
+
+.font-medium {
+    font-size: 16px;
+}
+
+.font-large {
+    font-size: 20px;
+}
+
+.input:focus {
+    border-color: #000;
 }
