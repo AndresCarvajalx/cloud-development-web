@@ -22,7 +22,7 @@ const firebaseConfig = {
   measurementId: "G-JHN4LBYN5L",
 };
 
-const app = initializeApp(firebaseConfig);
+export const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
 export const googleProvider = new GoogleAuthProvider();
@@ -46,3 +46,5 @@ export const loginWithFacebook = async (email, password) =>createUserWithEmailAn
 export const onAuthChanged = (user) => onAuthStateChanged(auth, user);
 
 export const deleteCurrentUser = async () => auth.currentUser.delete();
+
+//export const currentUser = auth.currentUser
