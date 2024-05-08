@@ -29,6 +29,8 @@ document.addEventListener("DOMContentLoaded", () => {
             <h3>Correo:</h3> ${data["email"]} 
             <h3>Fecha De Naciemiento:</h3> ${data["bornDate"]} 
           `
+      }).catch((e)=> {
+        window.location.href = "./register-userdata.html";
       });
     }
   });
