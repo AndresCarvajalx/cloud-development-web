@@ -1,7 +1,6 @@
 body {
     font-family: Arial, sans-serif;
     background-color: #f0f0f0;
-    /* Color de fondo gris claro */
     margin: 0;
     padding: 0;
 }
@@ -9,7 +8,6 @@ body {
 h1 {
     text-align: center;
     color: #000;
-    /* Color de texto negro */
 }
 
 #form-container {
@@ -17,10 +15,8 @@ h1 {
     margin: 50px auto;
     padding: 20px;
     background-color: #fff;
-    /* Fondo blanco */
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    /* Sombra ligera */
 }
 
 .button {
@@ -35,14 +31,12 @@ h1 {
 
 .button:hover {
     background-color: #333;
-    /* Color de fondo más oscuro al pasar el ratón */
 }
 
 
 #google-login-btn:hover,
 #facebook-login-btn:hover {
     background-color: #3c78dc;
-    /* Color de fondo más oscuro al pasar el ratón */
 }
 
 a {
@@ -50,7 +44,6 @@ a {
     text-align: center;
     margin-top: 10px;
     color: #666;
-    /* Color de texto gris */
     text-decoration: underline;
 }
 
@@ -143,4 +136,8 @@ a:hover {
 
 .input:focus {
     border-color: #000;
+}
+
+.w-20 {
+    width: 20vh;
 }
