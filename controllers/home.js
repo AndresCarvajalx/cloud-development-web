@@ -86,6 +86,10 @@ document.addEventListener("DOMContentLoaded", () => {
   content.addEventListener("click", (e) => {
     if (e.target.classList.contains("delete-btn")) {
       const id = e.target.dataset.id;
+      if(id === currentUser.uid) {
+        alert("Esa es tu cuenta, para borrarla debes darle al boton de eliminar cuenta que sale al comienzo de la pagina");
+        return;
+      }
       deleteDocument(id).then(() => {
         const rowToRemove = content
           .querySelector(`[data-id="${id}"]`)
