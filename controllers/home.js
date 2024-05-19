@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const createAccountBtn =
               document.getElementById("create-account-btn");
             createAccountBtn.addEventListener("click", () => {
-              window.location.href = "/signup.html";
+              window.location.href = "./templates/signup.html";
             });
             getDataAsAdmin().then((userData) => {
               let tableHTML = `
