@@ -1,4 +1,9 @@
-import { getData, getDataAsAdmin, deleteDocument } from "./database.js";
+import {
+  getData,
+  getDataAsAdmin,
+  deleteDocument,
+  updateData,
+} from "./database.js";
 import {
   onAuthChanged,
   logOut,
@@ -36,6 +41,14 @@ document.addEventListener("DOMContentLoaded", () => {
             userData.innerHTML += `<br><button type="button" class="button bg-black w-20" id="create-account-btn">Crear Usuario</button>`;
             const createAccountBtn =
               document.getElementById("create-account-btn");
+            const saveDataBtn = document.getElementById("save-data-btn");
+            const userName = document.getElementById("name-text");
+            const cc = document.getElementById("cc-text");
+            const address = document.getElementById("address-text");
+            const phone = document.getElementById("phone-text");
+            const email = document.getElementById("email-text");
+            const bornDate = document.getElementById("born-date-text");
+
             createAccountBtn.addEventListener("click", () => {
               window.location.href = "./signup.html";
             });
@@ -60,12 +73,51 @@ document.addEventListener("DOMContentLoaded", () => {
                   <td>${docData["cc"]}</td>
                   <td>${docData["phone"]}</td>
                   <td>${docData["rol"]}</td>
-                  <td><button type="button" class="delete-btn button bg-red txt-white w-20" data-id="${docData["id"]}"">Eliminar</button></td>
+                  <td>
+                    <button type="button" class="delete-btn button bg-red txt-white w-20" data-id="${docData["id"]}">Eliminar</button>
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="${docData["id"]}">Actualizar</button>
+                  </td>
                 </tr>`;
               });
               tableHTML += `</table>`;
               content.innerHTML += tableHTML;
             });
+            const exampleModal = document.getElementById("exampleModal");
+            if (exampleModal) {
+              exampleModal.addEventListener("show.bs.modal", async (event) => {
+                const button = event.relatedTarget;
+                const userId = button.getAttribute("data-bs-whatever");
+                const modalTitle = exampleModal.querySelector(".modal-title");
+                const modalBodyInput =
+                  exampleModal.querySelector(".modal-body input");
+                await getData(userId).then((d) => {
+                  const userD = d.data();
+                  userName.value = userD.fullName;
+                  cc.value = userD.cc;
+                  address.value = userD.address;
+                  phone.value = userD.phone;
+                  email.value = userD.email;
+                  bornDate.value = userD.bornDate;
+                  modalTitle.textContent = `Editar a ${userName.value}`;
+
+                  saveDataBtn.addEventListener("click", async () => {
+                    await updateData(
+                      userId,
+                      userD.rol,
+                      cc.value,
+                      userName.value,
+                      address.value,
+                      phone.value,
+                      email.value,
+                      bornDate.value
+                    ).then(() => {
+                      alert("Se actualizaron los datos");
+                      window.location.reload();
+                    });
+                  });
+                });
+              });
+            }
           }
         })
         .catch((e) => {
@@ -86,8 +138,10 @@ document.addEventListener("DOMContentLoaded", () => {
   content.addEventListener("click", (e) => {
     if (e.target.classList.contains("delete-btn")) {
       const id = e.target.dataset.id;
-      if(id === currentUser.uid) {
-        alert("Esa es tu cuenta, para borrarla debes darle al boton de eliminar cuenta que sale al comienzo de la pagina");
+      if (id === currentUser.uid) {
+        alert(
+          "Esa es tu cuenta, para borrarla debes darle al boton de eliminar cuenta que sale al comienzo de la pagina"
+        );
         return;
       }
       deleteDocument(id).then(() => {
