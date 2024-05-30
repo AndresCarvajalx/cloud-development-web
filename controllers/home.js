@@ -3,6 +3,7 @@ import {
   getDataAsAdmin,
   deleteDocument,
   updateData,
+  searchUserByCedula,
 } from "./database.js";
 import {
   onAuthChanged,
@@ -38,56 +39,107 @@ document.addEventListener("DOMContentLoaded", () => {
             <h3>Fecha De Naciemiento:</h3> ${data["bornDate"]} 
           `;
           if (rol === "admin") {
-            userData.innerHTML += `<br><button type="button" class="button bg-black w-20" id="create-account-btn">Crear Usuario</button>`;
+            userData.innerHTML += `
+              <br><button type="button" class="button bg-black w-20" id="create-account-btn">Crear Usuario</button>
+              <br>
+              <div class="input-group flex-nowrap">
+                <input type="text" id="user-cedula-input" class="form-control" placeholder="Cedula de usuario" aria-label="Cedula de usuario" aria-describedby="addon-wrapping">
+                <button type="button" id="search-user" class="btn btn-secondary">Buscar Usuario</button>
+              </div>
+            `;
+
             const createAccountBtn =
               document.getElementById("create-account-btn");
-            const saveDataBtn = document.getElementById("save-data-btn");
-            const userName = document.getElementById("name-text");
-            const cc = document.getElementById("cc-text");
-            const address = document.getElementById("address-text");
-            const phone = document.getElementById("phone-text");
-            const email = document.getElementById("email-text");
-            const bornDate = document.getElementById("born-date-text");
 
             createAccountBtn.addEventListener("click", () => {
               window.location.href = "./signup.html";
             });
+
+            document
+              .getElementById("search-user")
+              .addEventListener("click", async () => {
+                const cc =
+                  document.getElementById("user-cedula-input").value;
+                const userDoc = await searchUserByCedula(cc);
+                if (userDoc.exists) {
+                  displaySearchedUser(userDoc.data());
+                } else {
+                  alert("Usuario no encontrado");
+                }
+              });
+
+            function displaySearchedUser(userData) {
+              const searchSection = document.getElementById("search-section");
+              let tableHTML = `
+                <h1>Usuario Encontrado</h1>
+                <table id="searched-user">
+                  <tr>
+                    <th>Nombre</th>
+                    <th>Cedula</th>
+                    <th>Celular</th>
+                    <th>Rol</th>
+                    <th></th>
+                  </tr>
+                  <tr>
+                    <td>${userData.fullName}</td>
+                    <td>${userData.cc}</td>
+                    <td>${userData.phone}</td>
+                    <td>${userData.rol}</td>
+                    <td>
+                      <button type="button" class="delete-btn button bg-red txt-white w-20" data-id="${userData.id}">Eliminar</button>
+                      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="${userData.id}">Actualizar</button>
+                    </td>
+                  </tr>
+                </table>
+              `;
+              searchSection.innerHTML += tableHTML;
+            }
+
             getDataAsAdmin().then((userData) => {
               let tableHTML = `
-              <h1>Usuarios Registrados</h1>
-              <table id="reg-users">
-                <tr>
-                  <th>Nombre</th>
-                  <th>Cedula</th>
-                  <th>Celular</th>
-                  <th>Rol</th>
-                  <th></th>
-                </tr>
-            `;
+                <h1>Usuarios Registrados</h1>
+                <table id="reg-users">
+                  <tr>
+                    <th>Nombre</th>
+                    <th>Cedula</th>
+                    <th>Celular</th>
+                    <th>Rol</th>
+                    <th></th>
+                  </tr>
+              `;
               userData.forEach((doc) => {
                 let docData = doc.data();
                 console.log(docData);
                 tableHTML += `
-                <tr>
-                  <td>${docData["fullName"]}</td>
-                  <td>${docData["cc"]}</td>
-                  <td>${docData["phone"]}</td>
-                  <td>${docData["rol"]}</td>
-                  <td>
-                    <button type="button" class="delete-btn button bg-red txt-white w-20" data-id="${docData["id"]}">Eliminar</button>
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="${docData["id"]}">Actualizar</button>
-                  </td>
-                </tr>`;
+                  <tr>
+                    <td>${docData["fullName"]}</td>
+                    <td>${docData["cc"]}</td>
+                    <td>${docData["phone"]}</td>
+                    <td>${docData["rol"]}</td>
+                    <td>
+                      <button type="button" class="delete-btn button bg-red txt-white w-20" data-id="${docData["id"]}">Eliminar</button>
+                      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="${docData["id"]}">Actualizar</button>
+                    </td>
+                  </tr>`;
               });
               tableHTML += `</table>`;
               content.innerHTML += tableHTML;
             });
+
             const exampleModal = document.getElementById("exampleModal");
             if (exampleModal) {
               exampleModal.addEventListener("show.bs.modal", async (event) => {
                 const button = event.relatedTarget;
                 const userId = button.getAttribute("data-bs-whatever");
                 const modalTitle = exampleModal.querySelector(".modal-title");
+                const saveDataBtn = document.getElementById("save-data-btn");
+                const userName = document.getElementById("name-text");
+                const cc = document.getElementById("cc-text");
+                const address = document.getElementById("address-text");
+                const phone = document.getElementById("phone-text");
+                const email = document.getElementById("email-text");
+                const bornDate = document.getElementById("born-date-text");
+
                 const modalBodyInput =
                   exampleModal.querySelector(".modal-body input");
                 await getData(userId).then((d) => {

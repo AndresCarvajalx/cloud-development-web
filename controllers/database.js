@@ -8,6 +8,7 @@ import {
   getDocs,
   query,
   getDoc,
+  where,
   updateDoc,
 } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
 
@@ -40,4 +41,11 @@ export const updateData = async (id, rol, cc, fullName, address, phone, email, b
     bornDate: bornDate
   };
   return updateDoc(ref, postData);
+}
+
+export async function searchUserByCedula(cc) {
+  const usersRef = collection(db, "users");
+  const q = query(usersRef, where("cc", "==", cc));
+  const querySnapshot = await getDocs(q);
+  return querySnapshot.docs[0];
 }
